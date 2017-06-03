@@ -36,6 +36,8 @@ def print_entry(path, name, levels, last, args):
 		return
 	if os.path.isdir(path):
 		children = os.listdir(path)
+		if '__pycache__' in children:
+			children.remove('__pycache__')
 		if not args.invisibles:
 			while len(children) > 0 and (children[0])[0] == ".":
 				children.pop(0)
@@ -91,7 +93,6 @@ def print_entry(path, name, levels, last, args):
 						last = True
 					print_entry(None, fns[i], levels[:], last, args)
 					i = i + 1
-
 
 
 def pytree_main():
