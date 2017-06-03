@@ -122,7 +122,7 @@ def clean_printables(to_print):
 	activ_levels = []
 	i= len(to_print) - 1
 	while i > 0:
-		if len(activ_levels) == 0 or (max(activ_levels) > to_print[i][1][-1]):
+		if len(activ_levels) == 0 or (max(activ_levels) < to_print[i][1][-1]):
 			ln = len(to_print[i][1])
 			j = 0
 			while j < ln:
@@ -134,6 +134,9 @@ def clean_printables(to_print):
 		else:
 			if max(activ_levels) < to_print[i][1][-1] and len(activ_levels) > 1:
 				activ_levels.remove(max(activ_levels))
+			if to_print[i][1][-1] not in activ_levels:
+				activ_levels.append(to_print[i][1][-1])
+				to_print[i] = (to_print[i][0], to_print[i][1], True, to_print[i][3])
 			ln = len(to_print[i][1])
 			j = 0
 			while j < ln:
@@ -165,7 +168,7 @@ def pytree_main():
 	# print_spaces_and_bars(levels, last, explanations):
 	for t in to_print:
 		print_spaces_and_bars(t[1], t[2], t[3])
-		print(t[0], t[1])
+		print(t[0])
 
 
 if __name__ == '__main__':
