@@ -1,9 +1,7 @@
 # this is the file that will be run in order to launch pytree
 import os
 import argparse
-import fileinput
 import re
-from sys import argv
 
 def print_spaces_and_bars(levels, last, explanations):
 	# see print_entry() for info on arguments
